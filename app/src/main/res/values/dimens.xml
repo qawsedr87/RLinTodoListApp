@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_item_logo_margin_horizontal">5dp</dimen>
+    <dimen name="list_item_top_line_padding_vertical">2dp</dimen>
+    <dimen name="list_item_padding_vertical">1dp</dimen>
+    <dimen name="list_item_top_line_font_size">14sp</dimen>
+    <dimen name="list_item_2nd_line_font_size">8sp</dimen>
+</resources>
