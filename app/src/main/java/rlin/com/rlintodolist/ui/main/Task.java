@@ -1,9 +1,9 @@
 package rlin.com.rlintodolist.ui.main;
 
 public class Task {
-    public final static String HIGH = "high";
-    public final static String MEDIUM = "medium"; // default
-    public final static String LOW = "low";
+    public final static String HIGH = "High";
+    public final static String MEDIUM = "Medium"; // default
+    public final static String LOW = "Low";
 
     private String title;
     private String description;

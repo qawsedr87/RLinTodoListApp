@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/priorityLayout"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,7 +9,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingTop="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -29,6 +29,15 @@
             android:textSize="@dimen/list_item_2nd_line_font_size"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/dueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/list_item_padding_vertical"
+            android:paddingTop="@dimen/list_item_padding_vertical"
+            android:textSize="@dimen/list_item_2nd_line_font_size"
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -42,6 +51,6 @@
         android:layout_height="wrap_content"
         android:text="@string/delete"
         android:drawableLeft="@android:drawable/ic_menu_delete"
-        android:textSize="12dp"/>
+        android:textSize="12sp"/>
 
 </LinearLayout>
