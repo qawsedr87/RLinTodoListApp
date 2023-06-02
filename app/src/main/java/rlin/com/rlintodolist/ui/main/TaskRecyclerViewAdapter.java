@@ -40,11 +40,12 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.ViewHolder holder, int position) {
+
         holder.txtTitle.setText(mValues.get(position).getTitle());
         holder.txtDueDate.setText(mValues.get(position).getDueDate());
 
         if (TextUtils.isEmpty(mValues.get(position).getDescription())) {
-            holder.txtDescription.setText("{no description....}");
+            holder.txtDescription.setText(R.string.hint_empty_description);
         } else {
             holder.txtDescription.setText(mValues.get(position).getDescription());
         }
@@ -53,16 +54,16 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
 
         switch (mValues.get(position).getPriority()) {
             case Task.HIGH:
-                colorResId = android.R.color.holo_red_light; // Example: Set to red color
+                colorResId = android.R.color.holo_red_light;
                 break;
             case Task.MEDIUM:
-                colorResId = android.R.color.holo_orange_light; // Example: Set to orange color
+                colorResId = android.R.color.holo_orange_light;
                 break;
             case Task.LOW:
-                colorResId = android.R.color.holo_green_light; // Example: Set to green color
+                colorResId = android.R.color.holo_green_light;
                 break;
             default:
-                colorResId = android.R.color.transparent; // Set default color or handle other cases
+                colorResId = android.R.color.transparent;
                 break;
         }
         holder.priorityLayout.setBackgroundResource(colorResId);

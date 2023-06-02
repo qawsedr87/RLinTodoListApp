@@ -41,7 +41,7 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        // avoid obscured when keyboard popup
+        // avoid save section is obscured when keyboard popup
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
@@ -56,7 +56,8 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // TODO: database instant
+        // database instant
+        mViewModel.init_database(getActivity());
 
         // Instantiate the recyclerView
         RecyclerView recyclerView = getActivity().findViewById(R.id.todo_tasks);

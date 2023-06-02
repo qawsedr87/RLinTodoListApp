@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">RLin To Do</string>
     <string name="save">Save</string>
-    <string name="title">Title</string>
+    <string name="title">Title*</string>
     <string name="hint_title">task title</string>
     <string name="description">Description</string>
     <string name="hint_description">short description of task</string>
-    <string name="dueDate">Due Date</string>
+    <string name="dueDate">Due Date*</string>
     <string name="hint_dueDate">yyyymmdd of date pattern</string>
     <string name="priority">Priority</string>
     <string name="delete">Delete</string>
+    <string name="hint_empty_description">{no description...}</string>
 
     <string-array name="task_priorities">
         <item>High</item>
