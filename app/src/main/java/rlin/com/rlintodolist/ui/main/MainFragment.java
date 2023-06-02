@@ -2,7 +2,9 @@ package rlin.com.rlintodolist.ui.main;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +124,6 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
             if (currentFocus != null) {
                 inputMethodManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
-//            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
             // clear text after saving
             taskTitle.setText("");
@@ -132,7 +134,7 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
     }
 
     // The user should not be able to enter letters for the date field
-    // date pattern: yyyymmdd
+    // date pattern: yyyyMMdd
     private static boolean isValidDate(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         dateFormat.setLenient(false);
@@ -160,12 +162,6 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
         }
     }
 
-    private void showTaskAdditionalInformation(Task task) {
-        String message = task.getTitle() + " finish date on " + task.getDueDate() + " (priority: " + task.getPriority() + ")";
-        Log.d(TAG, message);
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
-
     public void showMissingInfoToast(String invalid) {
         String message = "Missing task " + invalid;
         Log.d(TAG, message);
@@ -178,10 +174,39 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
+    public void showTaskAdditionalInfoAlert(Task task) {
+        String message = "Task Title: " + task.getTitle() +
+                "\nFinish date before " + task.getDueDate() +
+                "\nPriority: " + task.getPriority() +
+                "\nDescription: " + (task.getDescription().isEmpty() ? "null" : task.getDescription());
+
+        ContextThemeWrapper ctw = new ContextThemeWrapper(getActivity(), R.style.AlertDialogCustom);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctw, R.style.AlertDialogCustom);
+        alertDialogBuilder.setTitle(R.string.alert_dialog_title);
+        alertDialogBuilder.setIcon(android.R.drawable.ic_dialog_info);
+
+        // Set dialog message alertDialogBuilder
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // close current activity
+                        dialog.cancel();
+                    }
+                });
+
+        // Create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     public void onItemSelected(Task task) {
         // show alertDialog for additional information
-        showTaskAdditionalInformation(task);
+        showTaskAdditionalInfoAlert(task);
     }
 
     @Override

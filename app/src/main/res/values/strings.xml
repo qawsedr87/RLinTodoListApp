@@ -6,10 +6,11 @@
     <string name="description">Description</string>
     <string name="hint_description">short description of task</string>
     <string name="dueDate">Due Date*</string>
-    <string name="hint_dueDate">yyyymmdd of date pattern</string>
+    <string name="hint_dueDate">yyyyMMdd of date pattern</string>
     <string name="priority">Priority</string>
     <string name="delete">Delete</string>
-    <string name="hint_empty_description">{no description...}</string>
+    <string name="hint_empty_description">null</string>
+    <string name="alert_dialog_title">Task Info</string>
 
     <string-array name="task_priorities">
         <item>High</item>
