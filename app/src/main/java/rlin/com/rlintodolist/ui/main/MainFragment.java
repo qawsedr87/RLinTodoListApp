@@ -204,14 +204,20 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
     }
 
     @Override
-    public void onItemSelected(Task task) {
-        // show alertDialog for additional information
-        showTaskAdditionalInfoAlert(task);
+    public void onItemLongClick(Task task) {
+        // delete the selected one
+        onDelete(task);
     }
 
     @Override
     public void onItemDeleteClicked(Task task) {
         // delete the selected one
         onDelete(task);
+    }
+
+    @Override
+    public void onItemSelected(Task task) {
+        // show alertDialog for additional information
+        showTaskAdditionalInfoAlert(task);
     }
 }
