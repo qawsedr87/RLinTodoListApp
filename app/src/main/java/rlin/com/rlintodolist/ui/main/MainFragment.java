@@ -23,6 +23,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import rlin.com.rlintodolist.R;
 
 public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.OnAdapterItemInteraction {
@@ -99,6 +102,8 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
             showMissingInfoToast("Title");
         } else if (TextUtils.isEmpty(dueDate)) {
             showMissingInfoToast("Due Date");
+        } else if (!isValidDate(dueDate)) {
+            showErrorDateFormatToast(dueDate);
         } else {
             Spinner taskPriority = getActivity().findViewById(R.id.todo_priority);
             String priority = taskPriority.getSelectedItem().toString();
@@ -126,6 +131,19 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
         }
     }
 
+    // The user should not be able to enter letters for the date field
+    // date pattern: yyyymmdd
+    private static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        }
+        return true;
+    }
+
     private void onDelete(Task task) {
         // When clicked, delete the item that was clicked button
         if (task != null) {
@@ -150,6 +168,12 @@ public class MainFragment extends Fragment implements TaskRecyclerViewAdapter.On
 
     public void showMissingInfoToast(String invalid) {
         String message = "Missing task " + invalid;
+        Log.d(TAG, message);
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showErrorDateFormatToast(String date) {
+        String message = date + " is not valid according to yyyyMMdd pattern";
         Log.d(TAG, message);
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
