@@ -6,7 +6,7 @@
     <string name="description">Description</string>
     <string name="hint_description">short description of task</string>
     <string name="dueDate">Due Date</string>
-    <string name="hint_dueDate">mm:dd:yyyy of date pattern</string>
+    <string name="hint_dueDate">yyyymmdd of date pattern</string>
     <string name="priority">Priority</string>
     <string name="delete">Delete</string>
 

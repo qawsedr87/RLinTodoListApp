@@ -53,6 +53,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("Task: id#{0}, title {1}, priority is {2} at {3}", id, title, priority, dueDate);
+        return "Task: id#" + id + " title " + title + " priority is " + priority + " at " + dueDate;
     }
 }

@@ -1,9 +1,11 @@
 package rlin.com.rlintodolist.ui.main;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,8 +41,13 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.txtTitle.setText(mValues.get(position).getTitle());
-        holder.txtDescription.setText(mValues.get(position).getDescription());
         holder.txtDueDate.setText(mValues.get(position).getDueDate());
+
+        if (TextUtils.isEmpty(mValues.get(position).getDescription())) {
+            holder.txtDescription.setText("{no description....}");
+        } else {
+            holder.txtDescription.setText(mValues.get(position).getDescription());
+        }
 
         int colorResId;
 
@@ -70,6 +77,15 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
                 }
             }
         });
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (null != mListener) {
+                    mListener.onItemDeleteClicked(task);
+                }
+            }
+        });
     }
 
     @Override
@@ -96,9 +112,9 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
         public final TextView txtDescription;
         public final TextView txtDueDate;
 
-        public final LinearLayout priorityLayout;
+        public final Button deleteButton;
 
-//        public final TextView txtPriority;
+        public final LinearLayout priorityLayout;
 
         public ViewHolder(View view) {
             super(view);
@@ -108,6 +124,7 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
             txtDescription = view.findViewById(R.id.description);
             txtDueDate = view.findViewById(R.id.dueDate);
             priorityLayout = view.findViewById(R.id.priorityLayout);
+            deleteButton = view.findViewById(R.id.todo_deleteButton);
         }
 
         @NotNull
@@ -119,5 +136,6 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
 
     public interface OnAdapterItemInteraction {
         void onItemSelected(Task task);
+        void onItemDeleteClicked(Task task);
     }
 }
