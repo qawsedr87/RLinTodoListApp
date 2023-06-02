@@ -143,4 +143,12 @@ cd RLinTodoListApp
 After you complete your project, take a screenshot showing your running app with 4 or more “To Do” items in your list. Delete one item, exit your app and restart it and show a 2nd screenshot showing the list of persisted ToDo items.
 
 ## Demo
-wip
+
+part of screenshots
+
+
+#### todo_list
+<img src="/screenshots/3_todo_list.png" width="234" height="416">
+
+#### todo_alertdialog
+<img src="/screenshots/4_selected_task_info_alertdialog.png" width="234" height="416">
